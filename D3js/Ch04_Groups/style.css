@@ -1,0 +1,10 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+g.group0 path,
+g.group0 circle {
+  stroke: red;
+  fill: none;
+}
