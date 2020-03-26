@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React Project</title>
+    <script crossorigin src="https://unpkg.com/react@16.7.0/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16.7.0/umd/react-dom.development.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+     <script type="text/javascript">
+       ReactDOM.render(
+        React.createElement(
+          "h1",
+          {"style":{"color":"red"}},
+          "Hello !"),
+        document.getElementById("root")
+       );
+
+       // ReactDOM.render(
+       //  React.createElement(
+       //    "div",
+       //    null,
+       //    React.createElement(
+       //      "h2",
+       //      {"style":{"color":"red"}},
+       //      "Hello 2 !")
+       //    ),
+       //  document.getElementById("root")
+       // );
+     </script>
+  </body>
+</html>
