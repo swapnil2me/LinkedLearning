@@ -51,24 +51,50 @@ class ColorGenerator extends Random {
 
 export const rando = new ColorGenerator()
 
-const shakespeareApi = "https://api.graph.cool/simple/v1/shakespeare"
+const shakespeareApi = "http://api.graph.cool/simple/v1/shakespeare"
 
 let options = () => {
   return {method: "POST",
-  headers: {
-    "Content-Type":"application/json"
-  },
-  body: JSON.stringify({
-    querry: `{
-      allPoems(
-        first:1
-        skip: ${rando.randomInt(0,160)}
-      ){
-        title
-        author
-        lines
-        text
-      }
-    }`
-  })}
+          headers: {
+            "Content-Type":"application/json",
+            "Access-Control-Allow-Origin":"*"
+                    },
+          body:'querry: {allPoems(first:1 skip: 100 ){title author lines text}}'
+          }
+}
+
+// let options = () => {
+//   return {method: "POST",
+//   headers: {
+//     "Content-Type":"application/json"
+//   },
+//   body: JSON.stringify({
+//     querry: `{
+//       allPoems(
+//         first:1
+//         skip: ${rando.randomInt(0,160)}
+//       ){
+//         title
+//         author
+//         lines
+//         text
+//       }
+//     }`
+//   })}
+// }
+
+// fetch(shakespeareApi,options()).then(response=>response.json()).then(json=>{
+//   console.log(json);
+// })
+
+export async function getRandomPoem(){
+  try{
+    let result = await fetch(shakespeareApi,options())
+    let response = await result.json()
+    let poem = response.data.allPoems[0]
+    console.log(poem.text);
+    return poem.text
+  } catch(error){
+    throw error
+  }
 }

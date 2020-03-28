@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput,
 Button, Document} from './styled'
 import hljs from 'highlight.js'
-import {rando} from './utils'
-
-console.log(rando)
-console.log(rando.color())
+import {rando, getRandomPoem} from './utils'
 
 class App extends Component {
 
@@ -133,12 +130,39 @@ class App extends Component {
     }
     let newStyles="".concat(styles).replace(",","")
     //console.log(newStyles);
+
+    while (newStyles.includes('random')) {
+      newStyles = newStyles.replace('random', rando.color())
+    }
+
     return newStyles
+  }
+
+  getRandomText = async()=>{
+    try {
+      let poem = await getRandomPoem()
+      this.handleChange({
+        target:{
+          name:'editor',
+          value: poem
+        }
+      })
+    } catch (error) {
+      console.log("error in getting poem: ", error)
+    } finally {
+      console.log("Swapnil !!!!!")
+      this.handleChange({
+        target:{
+          name:'editor',
+          value: "Why is my verse so barren of new pride,\nSo far from variation or quick change?\nWhy with the time do I not glance aside\nTo new-found methods, and to compounds strange?\nWhy write I still all one, ever the same,\nAnd keep invention in a noted weed,\nThat every word doth almost tell my name,\nShowing their birth, and where they did proceed?\nO! know sweet love I always write of you,\nAnd you and love are still my argument;\nSo all my best is dressing old words new,\nSpending again what is already spent:\n  For as the sun is daily new and old,\n  So is my love still telling what is told.\n"
+        }
+      })
+    }
   }
 
   render() {
     let {editor} = this.state
-    let {handleChange, newFields, rules, convertToMarkup, prepareStyles} = this // Object Destructuring
+    let {handleChange, newFields, rules, convertToMarkup, prepareStyles,getRandomText} = this // Object Destructuring
     return (
       <Container>
         <Column>
@@ -150,7 +174,9 @@ class App extends Component {
           </Button>
         </Column>
         <Column>
-          <Button>
+          <Button
+            onClick={getRandomText}
+          >
             Random Text
           </Button>
           <Document>
