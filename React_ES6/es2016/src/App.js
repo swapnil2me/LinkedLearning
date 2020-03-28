@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import {Markup, Editor, Container, Column, Row, RuleInput, RuleLabel, StyleInput,
 Button, Document} from './styled'
 import hljs from 'highlight.js'
+import {rando} from './utils'
+
+console.log(rando)
+console.log(rando.color())
 
 class App extends Component {
 
@@ -21,7 +25,7 @@ class App extends Component {
     })
   }
 
-  rules=()=>{
+  get rules(){
     let {rules}=this.state // Object Destructuring
     let array = []
     let fields=['name','begin','end']
@@ -105,7 +109,7 @@ class App extends Component {
         end=new RegExp(end)
         ruleObjects.push(newRule)
       }
-      console.log(newRule);
+      //console.log(newRule);
       // console.log(ruleObjects);
     }
     hljs.registerLanguage('language',this.language(ruleObjects))
@@ -128,7 +132,7 @@ class App extends Component {
         `)
     }
     let newStyles="".concat(styles).replace(",","")
-    console.log(newStyles);
+    //console.log(newStyles);
     return newStyles
   }
 
@@ -138,7 +142,7 @@ class App extends Component {
     return (
       <Container>
         <Column>
-          {rules()}
+          {rules}
           <Button
             onClick={newFields}
           >
