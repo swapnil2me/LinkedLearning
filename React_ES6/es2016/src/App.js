@@ -5,7 +5,12 @@ Button, Document} from './styled'
 class App extends Component {
 
   state = {
-    editor:""
+    editor:"",
+    name0:"",
+    begin0:"",
+    end0:"",
+    style0:"",
+    rules:1
   }
 
   handleChange = (event)=>{
@@ -15,15 +20,70 @@ class App extends Component {
     })
   }
 
+  rules=()=>{
+    let {rules}=this.state // Object Destructuring
+    let array = []
+    let fields=['name','begin','end']
+    for (let i=0;i<rules;i++){
+      array.push(
+        <Row key={i}>
+          <Column>
+            {fields.map((field,index)=>{
+              return (
+                <Column key={index}>
+                  <RuleLabel>
+                    {field}
+                  </RuleLabel>
+                  <RuleInput
+                    value={this.state[`${field}${i}`]}
+                    onChange={this.handleChange}
+                    name={`${field}${i}`}
+                  />
+                </Column>
+              )
+            })}
+          </Column>
+          <StyleInput
+            value={this.state[`style${i}`]}
+            onChange={this.handleChange}
+            name={`style${i}`}
+          />
+        </Row>
+      )
+    }
+    return array
+  }
+
+  newFields=()=>{
+    this.setState((prevState)=>{
+      let {rules}=prevState
+      let fields=['name','begin','end','style']
+      let inputValues={}
+      fields.forEach((field) => {
+        inputValues={
+          ...inputValues,
+          [`${field}${rules}`]:''
+        }
+      })
+      rules++
+      return{
+        rules,
+        ...inputValues // Spread Function
+      }
+    })
+  }
+
   render() {
     let {value} = this.state
-    let {handleChange} = this
+    let {handleChange, newFields, rules} = this // Object Destructuring
     return (
       <Container>
         <Column>
-          <Button>
+          {rules()}
+          <Button
+            onClick={newFields}
+          >
             New Rule
-            
           </Button>
         </Column>
         <Column>
