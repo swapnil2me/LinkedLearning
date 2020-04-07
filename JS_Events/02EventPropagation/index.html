@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <ul id='grid'>
+      <li id="red">
+        <p>Red</p>
+        <img src="" alt="red">
+      </li>
+      <li id="green">
+        <p>Green</p>
+        <img src="" alt="green">
+      </li>
+      <li id="blue">
+        <p>Blue</p>
+        <img src="" alt="blue">
+      </li>
+      <li id="black">
+        <p>Black</p>
+        <img id="blackIMG" src="" alt="black">
+      </li>
+    </ul>
+  </body>
+  <script type="text/javascript">
+    document.getElementById('grid').addEventListener('click',(e) => {
+      console.log("List");
+      //e.stopPropagation();
+      console.log(e.target);
+    }, false);// The boolean sets the True top down (Capturing Mode), vs False: Bottom Up (Bubbling Mode)
+
+    document.getElementById('blackIMG').addEventListener('click',(e) => {
+      console.log("Image");
+      console.log(e.target);
+      //e.stopPropagation();
+    }, false);
+  </script>
+</html>
