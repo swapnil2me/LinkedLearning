@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <ul>
+      <li id="red">Red</li>
+      <li id="green" onclick="alert('Green')">Green</li>
+      <li id="blue" onclick="console.log('Blue')">Blue</li>
+      <li id="black">Black</li>
+    </ul>
+  </body>
+  <script type="text/javascript">
+    document.getElementById('red').onclick=(e)=>{
+      console.log('Red');
+      console.log(e);
+    }
+
+    // Using addEventListener allows event propagation
+    document.getElementById('black').addEventListener('click',(e) => {
+      console.log('Black');
+      console.log(e);
+    }, false);
+  </script>
+</html>
