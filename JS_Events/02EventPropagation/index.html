@@ -13,19 +13,19 @@
         </a>
       </li>
       <li id="green">
-        <!-- <a href="https://google.com"> -->
+        <a href="https://google.com">
         <p>Green</p>
         <img src="" alt="green">
         </a>
       </li>
       <li id="blue">
-        <!-- <a href="https://google.com"> -->
+        <a href="https://google.com">
         <p>Blue</p>
         <img src="" alt="blue">
         </a>
       </li>
       <li id="black">
-        <!-- <a href="https://google.com"> -->
+        <a href="https://google.com">
         <p>Black</p>
         <img id="blackIMG" src="" alt="black">
         </a>
@@ -35,14 +35,15 @@
   <script type="text/javascript">
     document.getElementById('grid').addEventListener('click',(e) => {
       console.log("Clicked inside list");
-      // e.preventDefault();
+      e.preventDefault();// This method prevents the browser from going to href of the element anchor
       e.stopPropagation();
       // console.log(e.target);
     }, false);// The boolean sets the True top down (Capturing Mode), vs False: Bottom Up (Bubbling Mode)
 // This event cascading applies to all children event listners
     document.getElementById('blackIMG').addEventListener('click',(e) => {
       console.log("Clicked on Black Image");
-      // console.log(e.target);
+      e.preventDefault();// This method prevents the browser from going to href of the element anchor
+      //console.log(e.target);
       e.stopPropagation();//This method allows stoppig propagation to the parent event listner
     }, false);
   </script>
