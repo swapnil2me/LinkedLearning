@@ -7,25 +7,25 @@
   <body>
     <ul id='grid'>
       <li id="red">
-        <a href="https://google.com">
+        <!-- <a href="https://google.com"> -->
         <p>Red</p>
         <img src="" alt="red">
         </a>
       </li>
       <li id="green">
-        <a href="https://google.com">
+        <!-- <a href="https://google.com"> -->
         <p>Green</p>
         <img src="" alt="green">
         </a>
       </li>
       <li id="blue">
-        <a href="https://google.com">
+        <!-- <a href="https://google.com"> -->
         <p>Blue</p>
         <img src="" alt="blue">
         </a>
       </li>
       <li id="black">
-        <a href="https://google.com">
+        <!-- <a href="https://google.com"> -->
         <p>Black</p>
         <img id="blackIMG" src="" alt="black">
         </a>
@@ -34,16 +34,16 @@
   </body>
   <script type="text/javascript">
     document.getElementById('grid').addEventListener('click',(e) => {
-      console.log("List");
-      e.preventDefault();
+      console.log("Clicked inside list");
+      // e.preventDefault();
       //e.stopPropagation();
-      console.log(e.target);
+      // console.log(e.target);
     }, false);// The boolean sets the True top down (Capturing Mode), vs False: Bottom Up (Bubbling Mode)
-
+// This event cascading applies to all children events
     document.getElementById('blackIMG').addEventListener('click',(e) => {
-      console.log("Image");
-      console.log(e.target);
-      e.stopPropagation();
+      console.log("Clicked on Black Image");
+      // console.log(e.target);
+      //e.stopPropagation();
     }, false);
   </script>
 </html>
