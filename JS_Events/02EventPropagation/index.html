@@ -36,14 +36,14 @@
     document.getElementById('grid').addEventListener('click',(e) => {
       console.log("Clicked inside list");
       // e.preventDefault();
-      //e.stopPropagation();
+      e.stopPropagation();
       // console.log(e.target);
     }, false);// The boolean sets the True top down (Capturing Mode), vs False: Bottom Up (Bubbling Mode)
-// This event cascading applies to all children events
+// This event cascading applies to all children event listners
     document.getElementById('blackIMG').addEventListener('click',(e) => {
       console.log("Clicked on Black Image");
       // console.log(e.target);
-      //e.stopPropagation();
+      e.stopPropagation();//This method allows stoppig propagation to the parent event listner
     }, false);
   </script>
 </html>
