@@ -8,5 +8,12 @@ document.querySelector('.grid').addEventListener('mouseover',function (e) {
     let imgLoc = e.target.src;
     myImg.src = imgLoc;
     myElement.appendChild(myImg)
+
+    e.target.addEventListener('mouseout', function handler(d) {
+      let myNode = d.target.parentNode.querySelector('div.preview');
+      myNode.parentNode.removeChild(myNode);
+      e.target.removeEventListener('mouseout',handler, false);
+      // Above line removes the event as well while hovering out
+    }, false);
   }
 }, false);
